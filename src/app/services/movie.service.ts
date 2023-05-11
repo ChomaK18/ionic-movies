@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 
 export interface ApiResult {
   page: number;
-  result: any[];
+  results: any[];
   total_pages: number;
   total_results: number;
 }
@@ -17,6 +17,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
+  // TODO: add posters in pipe(map())
   getTopRatedMovies(page = 1) : Observable<ApiResult>{
     return this.http.get<ApiResult>(`${environment.baseUrl}/movie/popular?api_key=${environment.apiKey}&page=${page}`);  
   }
