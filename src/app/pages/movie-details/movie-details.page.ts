@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../services/movie.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -15,15 +14,13 @@ import { environment } from 'src/environments/environment';
 })
 export class MovieDetailsPage implements OnInit {
 
-  movie: any = null;
+  movie: any;
   imageBaseUrl = environment.images;
 
-  constructor(private route: ActivatedRoute,
-    private movieService: MovieService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.movieService.getMovieDetails(id || "1").subscribe(movie => {
+    this.route.data.subscribe(({ movie }) => {
       this.movie = movie;
       console.log(movie);
     })

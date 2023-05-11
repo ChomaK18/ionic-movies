@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { MovieResolverService } from './services/resolvers/movie-resolver.service';
 
 export const routes: Routes = [
   {
@@ -8,10 +9,11 @@ export const routes: Routes = [
   },
   {
     path: 'movies',
-    loadComponent: () => import('./pages/movies/movies.page').then( m => m.MoviesPage)
+    loadComponent: () => import('./pages/movies/movies.page').then(m => m.MoviesPage)
   },
   {
     path: 'movies/:id',
-    loadComponent: () => import('./pages/movie-details/movie-details.page').then( m => m.MovieDetailsPage)
+    resolve: { movie: MovieResolverService },
+    loadComponent: () => import('./pages/movie-details/movie-details.page').then(m => m.MovieDetailsPage)
   },
 ];

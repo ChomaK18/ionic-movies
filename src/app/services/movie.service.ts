@@ -22,7 +22,7 @@ export class MovieService {
     return this.http.get<ApiResult>(`${environment.baseUrl}/movie/popular?api_key=${environment.apiKey}&page=${page}`);  
   }
 
-  getMovieDetails(id: string): Observable<ApiResult>{
+  getMovieDetails(id: string | null): Observable<ApiResult>{
     return this.http.get<ApiResult>(`${environment.baseUrl}/movie/${id}?api_key=${environment.apiKey}`);
   }
 }

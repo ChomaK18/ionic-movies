@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="success">
-    <ion-title>{{movie?.title}}</ion-title>
+    <ion-title>{{movie.title}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/movies"></ion-back-button>
     </ion-buttons>
@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="movie">
+  <ion-card>
     <img [src]="imageBaseUrl + '/w400' + movie.poster_path"/>
     <ion-card-header>
       <ion-card-title>
