@@ -22,6 +22,10 @@ export class MovieService {
     return this.http.get<ApiResult>(`${environment.baseUrl}/movie/popular?api_key=${environment.apiKey}&page=${page}`);  
   }
 
+  searchMovie(query: string) :Observable<ApiResult>{
+    return this.http.get<ApiResult>(`${environment.baseUrl}/search/movie?api_key=${environment.apiKey}&query=${query}`)
+  }
+
   getMovieDetails(id: string | null): Observable<ApiResult>{
     return this.http.get<ApiResult>(`${environment.baseUrl}/movie/${id}?api_key=${environment.apiKey}`);
   }
