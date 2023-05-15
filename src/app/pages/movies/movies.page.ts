@@ -18,6 +18,8 @@ export class MoviesPage implements OnInit, OnDestroy {
 
   movies: any[] = [];
   filteredMovies: any[] = [];
+  selectValue = "";
+  radioValue = "";
   isSearching = false;
   currentPage = 1;
   imageBaseUrl = environment.images;
@@ -47,7 +49,7 @@ export class MoviesPage implements OnInit, OnDestroy {
       .subscribe(res => {
         loading.dismiss();
         this.movies.push(...res.results);
-        console.log(res);
+        console.log("getTopRatedMovies", res);
 
         event?.target.complete();
         if (event) {
@@ -68,6 +70,13 @@ export class MoviesPage implements OnInit, OnDestroy {
     } else {
       this.isSearching = false;
     }
+  }
+
+  sort() {
+    this.movieService.discoverMovie(this.selectValue, this.radioValue)
+      .subscribe(res => {
+        console.log("discover", res);
+      })
   }
 
   loadMore(event: any) {

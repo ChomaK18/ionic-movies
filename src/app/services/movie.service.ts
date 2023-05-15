@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment as env } from 'src/environments/environment';
 
 export interface ApiResult {
   page: number;
@@ -19,14 +19,19 @@ export class MovieService {
 
   // TODO: add posters in pipe(map())
   getTopRatedMovies(page = 1) : Observable<ApiResult>{
-    return this.http.get<ApiResult>(`${environment.baseUrl}/movie/popular?api_key=${environment.apiKey}&page=${page}`);  
+    return this.http.get<ApiResult>(`${env.baseUrl}/movie/popular?api_key=${env.apiKey}&page=${page}`);  
   }
 
   searchMovie(query: string) :Observable<ApiResult>{
-    return this.http.get<ApiResult>(`${environment.baseUrl}/search/movie?api_key=${environment.apiKey}&query=${query}`)
+    return this.http.get<ApiResult>(`${env.baseUrl}/search/movie?api_key=${env.apiKey}&query=${query}`)
   }
 
   getMovieDetails(id: string | null): Observable<ApiResult>{
-    return this.http.get<ApiResult>(`${environment.baseUrl}/movie/${id}?api_key=${environment.apiKey}`);
+    return this.http.get<ApiResult>(`${env.baseUrl}/movie/${id}?api_key=${env.apiKey}`);
   }
+
+  discoverMovie(sortBy: string, trend: string): Observable<ApiResult>{
+    return this.http.get<ApiResult>(`${env.baseUrl}/discover/movie?api_key=${env.apiKey}&sort_by=${sortBy}.${trend}`);
+  }
+
 }

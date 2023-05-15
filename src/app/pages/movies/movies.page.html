@@ -3,7 +3,25 @@
     <ion-title>Trending movies</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar (ionInput)="handleInput($event)" [debounce]="1000" placeholder="Title"></ion-searchbar>
+    <ion-searchbar slot="start" (ionInput)="handleInput($event)" [debounce]="1000" placeholder="Title"></ion-searchbar>
+    <ion-list slot="end">
+      <ion-item>
+        <ion-select (ionChange)="sort()" interface="popover" placeholder="Sort by" [(ngModel)]="selectValue">
+          <ion-select-option value="alphabetically">Alphabetically</ion-select-option>
+          <ion-select-option value="popularity">Popularity</ion-select-option>
+          <ion-select-option value="releaseDate">Release date</ion-select-option>
+          <ion-select-option value="voteAverage">Vote average</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-radio-group (ionChange)="sort()" value="desc" slot="end" [(ngModel)]="radioValue">
+      <ion-radio value="asc">
+        A-Z
+      </ion-radio>
+      <ion-radio value="desc">
+        Z-A
+      </ion-radio>
+    </ion-radio-group>
   </ion-toolbar>
 </ion-header>
 
